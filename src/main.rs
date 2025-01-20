@@ -1,98 +1,87 @@
-#[derive(Debug)]
+use serde::Deserialize;
 
-#[derive(PartialEq)]
-enum Symptom {
-    Fever,
-    Headache,
-    SoreThroat,
-    Cough,
-    Fatigue,
-    Chills,
-    LooseStool,
-    Vomiting,
-    AbdominalPain,
-}
-
-#[derive(Debug)]
-enum Illness {
-    Malaria,
-    CommonCold,
-    Migraine,
-    Pharyngitis,
-    //GastroEnteritis,
-    FoodPoisoning,
+#[derive(Debug, Deserialize)]
+struct Diagnosis {
+    diagnosis: String,
+    symptoms: Vec<String>,
+    recommended_action: String,
 }
 
 
-fn diagnose(symptoms: Vec<Symptom>) -> Vec<Illness> {
-    let mut illnesses = Vec::new();
 
-    if symptoms.contains(&Symptom::Fever) && symptoms.contains(&Symptom::Headache)
-        && symptoms.contains(&Symptom::Chills)
-    {
-        illnesses.push(Illness::Malaria);
-    }
-    if symptoms.contains(&Symptom::Fever) && symptoms.contains(&Symptom::Cough) {
-        illnesses.push(Illness::CommonCold);
-    }
-    if symptoms.contains(&Symptom::AbdominalPain) && symptoms.contains(&Symptom::LooseStool)
-        && symptoms.contains(&Symptom::Vomiting)
-    {
-        illnesses.push(Illness::FoodPoisoning);
-    }
-    if symptoms.contains(&Symptom::Headache) {
-        illnesses.push(Illness::Migraine);
-    }
-    if symptoms.contains(&Symptom::Fever) && symptoms.contains(&Symptom::SoreThroat) {
-        illnesses.push(Illness::Pharyngitis);
-    }
+use std::fs;
 
-    illnesses
+fn load_data(file_path: &str) -> Vec<Diagnosis> {
+    let file_content = fs::read_to_string(file_path)
+        .expect("Failed to read JSON file");
+    serde_json::from_str(&file_content)
+        .expect("Failed to parse JSON data")
 }
 
-fn parse_symptoms(input: &str) -> Vec<Symptom> {
-    let mut symptoms = Vec::new();
+fn diagnose(symptoms: Vec<String>, data: &[Diagnosis]) -> Vec<(String, f64, String)> {
+    let mut matching_diagnoses = Vec::new();
 
-    for symptom in input.split(',') {
-        match symptom.trim().to_lowercase().as_str() {
-            "fever" => symptoms.push(Symptom::Fever),
-            "headache" => symptoms.push(Symptom::Headache),
-            "sore throat" => symptoms.push(Symptom::SoreThroat),
-            "cough" => symptoms.push(Symptom::Cough),
-            "fatigue" => symptoms.push(Symptom::Fatigue),
-            "chills" => symptoms.push(Symptom::Chills),
-            "loose stool" => symptoms.push(Symptom::LooseStool),
-            "vomiting" => symptoms.push(Symptom::Vomiting),
-            "abdominal pain" => symptoms.push(Symptom::AbdominalPain),
-            _ => println!("Unknown symptom: {}", symptom.trim()),
+    for diagnosis in data {
+        let matched_symptoms = diagnosis
+            .symptoms
+            .iter()
+            .filter(|symptom| symptoms.contains(&symptom.to_lowercase()))
+            .count();
+
+        if matched_symptoms > 0 {
+            let total_symptoms = diagnosis.symptoms.len();
+            let match_percentage = (matched_symptoms as f64 / total_symptoms as f64) * 100.0;
+
+            matching_diagnoses.push((
+                diagnosis.diagnosis.clone(),
+                match_percentage,
+                diagnosis.recommended_action.clone(),
+            ));
         }
     }
 
-    symptoms
+
+    matching_diagnoses.sort_by(|a, b| b.1.partial_cmp(&a.1).unwrap());
+
+    
+    matching_diagnoses.into_iter().take(2).collect()
 }
 
-use std::io;
+
 
 fn main() {
+    let data = load_data("data.json"); 
+
     println!("Welcome to the Symptom Checker!");
-    println!("Enter your symptoms as a comma-separated list (e.g., fever, headache, cough):");
+    println!("The program helps you to diagnose your symptoms and recommends action to take.");
+    println!("The program diagnose basic symptoms and recommends actions that can be taken at home, it is important to seek further medical advice if symptoms persists");
+    println!("please enter your symptoms as a comma-separated list (e.g., fever, headache):");
 
     let mut input = String::new();
-    io::stdin().read_line(&mut input).expect("Failed to read input");
+    std::io::stdin().read_line(&mut input).expect("Failed to read input");
 
-    let symptoms = parse_symptoms(&input);
+    let symptoms: Vec<String> = input
+        .trim()
+        .split(',')
+        .map(|s| s.trim().to_lowercase())
+        .collect();
+
     if symptoms.is_empty() {
         println!("No valid symptoms entered. Please try again.");
         return;
     }
 
-    let diagnoses = diagnose(symptoms);
+    let diagnoses = diagnose(symptoms, &data);
+
     if diagnoses.is_empty() {
-        println!("No matching illnesses found. Please consult a doctor.");
+        println!("your symptoms did not match a diagnosis in our data base, please consult a doctor for further evaluation and treatment.");
     } else {
-        println!("Possible Diagnoses:");
-        for illness in diagnoses {
-            println!("- {:?}", illness);
+        println!("your symptoms matched:");
+        for (diagnosis, percentage, action) in diagnoses {
+            println!(
+                "- {}: {:.2}% match. Recommended action: {}",
+                diagnosis, percentage, action
+            );
         }
     }
 }

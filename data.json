@@ -1,0 +1,70 @@
+[
+    {
+        "diagnosis": "malaria",
+        "symptoms": ["fever", "headache", "vomiting", "muscle pain", "sweating", "chills"],
+        "recommended_action": "Seek medical attention for a blood test and treatment, take a pain reliever meanwhile",
+        "drugs recommended": ["paracetamol 1gram 3 times a day", "doctor will prescribe antimalarial drugs"]          
+    },
+    {
+        "diagnosis": "influenza",
+        "symptoms": ["fever", "cough", "sore throat", "runny nose", "muscle pain", "headache", "fatigue"],
+        "recommended_action": "take pain reliever, drink plenty of fluids, use nasal decongestant if needed, keep warm and bedrest"
+    },
+    {
+        "diagnosis": "common cold",
+        "symptoms": ["sneezing", "runny nose", "fatigue"],
+        "recommended_action": "take pain reliever, use antihistamine  drink plenty of fluids, use nasal decongestant if needed, keep warm and bedrest"
+
+    },
+    {
+        "diagnosis": "possible pneumonia",
+        "symptoms": ["fever", "cough", "chest pain", "fatigue"],
+        "recommended_action": "Seek medical attention for further management, take a pain reliever meanwhile"
+    },
+    {
+        "diagnosis": "asthmatick attack",
+        "symptoms": ["shortness of breath", "wheezing", "cough, fast heart rate"],
+        "recommended_action": "use prescribed inhaler, seek urgent medical attention if symptoms persists"
+    },
+    {
+        "diagnosis": "migraine",
+        "symptoms": ["headache", "nausea", "sensitivity to light", "fatigue"],
+        "recommended_action": "take pain reliever, drink water, complete bed rest in a poorly lit room, avoid triggers like stress, bright light and loud noise"
+    },
+    {
+        "diagnosis": "food poisoning",
+        "symptoms": ["nausea", "vomiting", "diarrhea", "abdominal pain"],
+        "recommended_action": "drink plenty of fluids, pain reliever for abdominal pain, loperamide 4mg tablets for diarrhea, avoid dairy products until diarrhea stops, seek medical attention if symptoms persists" 
+    },
+    {
+        "diagnosis": "UTI",
+        "symptoms": ["frequent urination", "painful urination"],
+        "recommended_action": "drink plenty of water, urine test is highly recommended to confirm diagnosis and start treatment, take pain reliever meanwhile"
+    },
+    {
+        "diagnosis": "candidiasis",
+        "symptoms": ["itching", "painful urination", "discharge"],
+        "recommended_action": "drink plenty of water, urine test is highly recommended to confirm diagnosis and start treatment, take pain reliever meanwhile, maintain genital hygiene"},
+    {
+        "diagnosis": "conjunctivitis",
+        "symptoms": ["eye redness", "eye itching", "eye discharge"],
+        "recommended_action": "wash eyes with clean water, avoid touching eyes, avoid sharing towels, eye drops can be used, seek medical attention if symptoms persists"
+    },
+    {
+        "diagnosis": "sinusitis",
+        "symptoms": ["facial pain", "headache", "runny nose", "nasal congestion"],
+        "recommended_action": "drink plenty of fluids, use nasal decongestant, take pain reliever, use steam inhalation, seek medical attention if symptoms persists"
+    },
+    {
+        "diagnosis": "otitis media",
+        "symptoms": ["ear pain", "ear discharge"],
+        "recommended_action": "avoid putting anything in the ear, use pain reliever, seek medical attention for prescribed treatment" 
+    },  
+    {
+        "diagnosis": "gastritis or peptic ulcer",
+        "symptoms": ["abdominal pain", "bloating", "headache"],
+        "recommended_action": "avoid spicy food, avoid alcohol, avoid smoking, avoid acidic food, avoid caffeine, avoid aspirin based pain relievers, anti acid can be used to relieve abdominal discomfort, do not starve, seek medical attention if symptoms persists"
+    }
+           
+        
+]
