@@ -4,9 +4,9 @@ use serde::Deserialize;
 struct Diagnosis {
     diagnosis: String,
     symptoms: Vec<String>,
+    required_symptoms: Vec<String>,
     recommended_action: String,
 }
-
 
 
 use std::fs;
@@ -22,7 +22,16 @@ fn diagnose(symptoms: Vec<String>, data: &[Diagnosis]) -> Vec<(String, f64, Stri
     let mut matching_diagnoses = Vec::new();
 
     for diagnosis in data {
-        let matched_symptoms = diagnosis
+                let required_present = diagnosis
+            .required_symptoms
+            .iter()
+            .all(|req_symptom| symptoms.contains(&req_symptom.to_lowercase()));
+
+        if !required_present {
+            continue; 
+        }
+
+                let matched_symptoms = diagnosis
             .symptoms
             .iter()
             .filter(|symptom| symptoms.contains(&symptom.to_lowercase()))
@@ -40,14 +49,10 @@ fn diagnose(symptoms: Vec<String>, data: &[Diagnosis]) -> Vec<(String, f64, Stri
         }
     }
 
+    matching_diagnoses.sort_by(|a: &(String, f64, String)  , b: &(String, f64, String)  | b.1.partial_cmp(&a.1).unwrap());
 
-    matching_diagnoses.sort_by(|a, b| b.1.partial_cmp(&a.1).unwrap());
-
-    
     matching_diagnoses.into_iter().take(2).collect()
 }
-
-
 
 fn main() {
     let data = load_data("data.json"); 
