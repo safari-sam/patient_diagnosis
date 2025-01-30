@@ -3,21 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Symptom Checker</title>
+    <title>Patient Diagnosis</title>
     <style>
         body {
             font-family: Arial, sans-serif;
             text-align: center;
             margin: 50px;
-            background-color: #f4f4f4;
         }
         .container {
-            max-width: 800px;
+            max-width: 600px;
             margin: auto;
             padding: 20px;
-            background: white;
+            border: 1px solid #ddd;
             border-radius: 10px;
-            box-shadow: 2px 2px 12px rgba(0, 0, 0, 0.2);
+            box-shadow: 2px 2px 12px rgba(0, 0, 0, 0.1);
         }
         h1 {
             color: #333;
@@ -38,90 +37,20 @@
         .download-btn:hover {
             background-color: #0056b3;
         }
-        input {
-            padding: 10px;
-            width: 80%;
-            margin-top: 10px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-        }
-        button {
-            padding: 10px;
-            font-size: 16px;
-            background-color: #28a745;
-            color: white;
-            border: none;
-            cursor: pointer;
-            margin-top: 10px;
-        }
-        button:hover {
-            background-color: #218838;
-        }
-        #output {
-            margin-top: 20px;
-            font-weight: bold;
-        }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>Symptom Checker</h1>
-        <p>This application helps diagnose basic symptoms and provides recommended actions.</p>
-        <p>It is important to seek further medical advice if symptoms persist.</p>
-
-        <h2>How to Use</h2>
-        <p>Enter symptoms separated by commas and click "Check Diagnosis".</p>
-
-        <input type="text" id="symptoms" placeholder="e.g., fever, headache">
-        <button onclick="checkDiagnosis()">Check Diagnosis</button>
-        <div id="output"></div>
-
-        <h2>Download & Installation</h2>
-        <p>Download the application for your operating system:</p>
-        <a class="download-btn" href="https://github.com/safari-sam/patient_diagnosis/archives/refs/tags/v1.0.1.tar.gz"> x86_64-unknown-linux-musl  Download for Linux/macOS
-        <br><br>
-        <a class="download-btn" href="https://github.com/safari-sam/patient_diagnosis.git"> Download for Windows
+        <h1>Patient Diagnosis Tool</h1>
+        <p>A Rust-based CLI tool to match symptoms with possible diagnoses.</p>
+        <p>Download the latest version below:</p>
+        <a class="download-btn" href="https://github.com/your-username/your-repository/releases/latest/download/patient_diagnosis.tar.gz">
+            Download for Linux/macOS
         </a>
-
-        <h2>Benefits & Usefulness</h2>
-        <ul style="text-align: left;">
-            <li>Quick symptom matching</li>
-            <li>Provides home care recommendations</li>
-            <li>Encourages early medical consultation</li>
-        </ul>
+        <br><br>
+        <a class="download-btn" href="https://github.com/your-username/your-repository/releases/latest/download/patient_diagnosis.zip">
+            Download for Windows
+        </a>
     </div>
-
-    <script>
-        function checkDiagnosis() {
-            let symptomsInput = document.getElementById("symptoms").value.trim();
-            let outputDiv = document.getElementById("output");
-            
-            if (symptomsInput === "") {
-                outputDiv.innerHTML = "Please enter symptoms.";
-                return;
-            }
-
-            let symptoms = symptomsInput.split(',').map(s => s.trim().toLowerCase());
-            
-            // Example diagnoses data (Replace with API or backend call in the future)
-            let diagnoses = [
-                { diagnosis: "Malaria", symptoms: ["fever", "headache", "chills"], action: "Consult a doctor immediately." },
-                { diagnosis: "Influenza", symptoms: ["fever", "cough", "fatigue"], action: "Rest and stay hydrated." },
-                { diagnosis: "Common Cold", symptoms: ["sneezing", "runny nose"], action: "Drink warm fluids and rest." }
-            ];
-
-            let matches = diagnoses.filter(d => d.symptoms.some(symptom => symptoms.includes(symptom)));
-            
-            if (matches.length > 0) {
-                let result = "<h3>Your Symptoms Matched:</h3>";
-                matches.forEach(match => {
-                    result += `<p><b>${match.diagnosis}</b>: ${match.action}</p>`;
-                });
-                outputDiv.innerHTML = result;
-            } else {
-                outputDiv.innerHTML = "No matching diagnosis found. Please consult a doctor.";
-            }
-        }
-    </script>
 </body>
 </html>
