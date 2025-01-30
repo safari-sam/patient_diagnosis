@@ -1,4 +1,4 @@
-#Symptom_Check
+Symptom_Check
 
 
 A "Rust-based CLI tool" designed to match patient symptoms with potential diagnoses dynamically. The program uses JSON-based data and ranks diagnoses by likelihood, ensuring accurate results by requiring key symptoms for certain diagnoses.
