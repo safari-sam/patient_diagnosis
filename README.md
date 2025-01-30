@@ -11,12 +11,13 @@ Features
 - Displays recommended actions for each diagnosis.
 - Flexible and extensible—easily add or modify diagnoses and symptoms in the JSON file.
 
-Benefits of the project 
+Benefits of the project:
+
 with telemedicine feature, the project will provide: 
-    Improved Accessibility: Patients can access healthcare professionals and medications from the comfort of their homes.
-    Time-Saving: Reduces the time and effort required to visit a healthcare facility or pharmacy physically.
-    Better Continuity of Care: Ensures patients receive timely consultations and prescribed medications without delays.
-    Scalability: The project is positioned for broader adoption in various healthcare settings, including rural areas with limited access to physical healthcare facilities.
+- Improved Accessibility: Patients can access healthcare professionals and medications from the comfort of their homes.
+- Time-Saving: Reduces the time and effort required to visit a healthcare facility or pharmacy physically.
+- Better Continuity of Care: Ensures patients receive timely consultations and prescribed medications without delays.
+- Scalability: The project is positioned for broader adoption in various healthcare settings, including rural areas with limited access to physical healthcare facilities.
 
 How It Works
 1. Input Symptoms:
