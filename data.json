@@ -36,6 +36,19 @@
         "diagnosis": "migraine",
         "symptoms": ["headache", "nausea", "sensitivity to light", "fatigue"],
         "required_symptoms": ["headache"],
+        "sub_questions": {
+            "headache":{
+                "question": "where is the headache located?",
+                "options": {
+                    "forehead": ["sinus headache", "migraine"],
+                    "one side": ["migraine"],
+                    "both sides": ["tension headache", "migraine"],
+                    "back of the head": ["tension headache", "migraine"],
+                    "felt from the eyes": ["cluster headache", "migraine"],
+                    "generalized": ["tension headache", "migraine"]
+                
+                }           }
+        }, 
         "recommended_action": "take pain reliever, drink water, complete bed rest in a poorly lit room, avoid triggers like stress, bright light and loud noise"
     },
     {
@@ -45,8 +58,8 @@
         "recommended_action": "drink plenty of fluids, pain reliever for abdominal pain, loperamide 4mg tablets for diarrhea, avoid dairy products until diarrhea stops, seek medical attention if symptoms persists" 
     },
     {
-        "diagnosis": "UTI",
-        "symptoms": ["frequent urination", "painful urination"],
+        "diagnosis": "Urinary Tract Infection (UTI)",
+        "symptoms": ["frequent urination", "painful urination" , "lower abdominal pain" ],
         "required_symptoms": ["painful urination"],
         "recommended_action": "drink plenty of water, urine test is highly recommended to confirm diagnosis and start treatment, take pain reliever meanwhile"
     },
@@ -77,6 +90,16 @@
         "diagnosis": "gastritis or peptic ulcer",
         "symptoms": ["abdominal pain", "bloating", "headache"],
         "required_symptoms": ["abdominal pain"],
+        "sub_questions": {
+            "abdominal pain":{
+                "question": "where is the abdominal pain located?",
+                "options": {
+                    "upper middle abdomen": ["gastritis", "peptic ulcer"],
+                    "center of the abdomen": ["gastritis", "gastroenteritis", "consult with doctor for further evaluation"],
+                    "lower abdomen": ["gastroenteritis", "urinary tract infection", "consult with doctor for further evaluation"],
+                    "any other location": ["consult with doctor for further evaluation"]
+                }           }
+        },
         "recommended_action": "avoid spicy food, avoid alcohol, avoid smoking, avoid acidic food, avoid caffeine, avoid aspirin based pain relievers, anti acid can be used to relieve abdominal discomfort, do not starve, seek medical attention if symptoms persists"
     }
            
